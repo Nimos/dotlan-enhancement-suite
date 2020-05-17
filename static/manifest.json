@@ -1,0 +1,23 @@
+{
+    "name": "Dotlan Enhancement Suite",
+    "version": "0.1",
+    "description": "Adds a bunch of useful features to DOTLAN Eve Maps",
+    "manifest_version": 2,
+    
+    "page_action": {
+      "default_popup": "views/main.html",
+      "default_icon": "img/logo.png"
+    },
+
+    "permissions": ["declarativeContent", "storage", "identity"], 
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+
+    "content_scripts": [{
+        "matches": ["https://evemaps.dotlan.net/*", "http://evemaps.dotlan.net/*"],
+        "js": ["injected.js"]
+    }]
+  }

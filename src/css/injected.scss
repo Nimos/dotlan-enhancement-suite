@@ -1,0 +1,32 @@
+
+div#mainnav {
+    top: 68px;
+    position: absolute;
+}
+
+div#banner {
+    height: 43px;
+}
+
+div#searchbox {
+    height: auto;
+    border-radius: 5px;
+}
+
+#search > h2 {
+    display: none;
+}
+
+#header {
+    height: 93px !important;
+}
+
+#header h1 a {
+    top: -16px;
+}
+
+div#des-main {
+    height: 50px;
+    display: grid;
+    grid: 1fr 1fr / 50px 1fr 1fr 1fr;
+}
