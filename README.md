@@ -1,4 +1,4 @@
-# dotlan-enhancement-suite
+# Dotlan Enhancement Suite
 
 This Chrome Extension adds various useful features to the Maps at https://evemaps.dotlan.net
 
