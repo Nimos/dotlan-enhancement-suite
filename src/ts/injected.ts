@@ -1,20 +1,12 @@
-const dotlanMain = document.getElementById('main');
 import '../css/injected.scss';
+import { DotlanEnhancementSuite } from './injected/DotlanEnhancementSuite';
 
-const dotlanSubMenu = document.getElementById('submenu');
+let suite = DotlanEnhancementSuite.getInstance();
 
-let extensionMenu = document.createElement('div');
-extensionMenu.id = "des-main";
 
-extensionMenu.innerHTML = `
-    TEST TEST TEST
-`
-if (dotlanMain) {
+document.addEventListener('click', (event) => {
+    if (event.target && (<HTMLElement>event.target).classList.contains('des-esi-login-hint')) {
+        
+    }
+})
 
-    dotlanMain.insertBefore(extensionMenu, dotlanSubMenu);
-
-    chrome.storage.local.get('token', (token) => {
-        extensionMenu.innerHTML = token.token;
-    })
-
-}

@@ -1,7 +1,10 @@
 
 
-import { EveESI } from './EveESI';
+import { DotlanEnhancementBackend } from './background/DotlanEnhancementBackend';
 
 console.log("Loaded background script.")
  
-EveESI.doSSO();
+
+const main = DotlanEnhancementBackend.getInstance(); 
+
+console.log("Loaded background script.")
