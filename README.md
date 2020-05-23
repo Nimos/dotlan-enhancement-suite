@@ -2,6 +2,21 @@
 
 This Chrome Extension adds various useful features to the Maps at https://evemaps.dotlan.net
 
+## Features
+
+- zKillboard Integration 
+  - Live feed of kills in the region in the sidebar
+  - New killmails indicated by short flash on the map
+  
+- Entosis Module
+  - Show upcoming and active entosis timers in the sidebar
+  - Show entosis progress under the contested system
+
+- Tracking Module
+  - Current location of signed-in character highlighted on map
+  - Automatically load new region maps as the character travels
+  
+
 # Build
 ```
 npm install
