@@ -35,9 +35,9 @@ npm run build
 
 ### Modules
 
-- [ ] Tracking Module - Show live player location on map
-- [ ] zKill Module - Show recent kills around the player in sidebar and on map
-- [ ] Entosis Module - Show active entosis progress bars on systems, show timers in the next few hours as countdown
+- [x] Tracking Module - Show live player location on map
+- [x] zKill Module - Show recent kills around the player in sidebar and on map
+- [x] Entosis Module - Show active entosis progress bars on systems, show timers in the next few hours as countdown
 - [ ] Jump Bridge Module - Show Ansiblex connections on map
 - [ ] Set Destination Module - Add "Set Destination" option to context menu
 - [ ] More Information Module - Add extra information to map overlay (Deltas in NPC view, sov icons)
