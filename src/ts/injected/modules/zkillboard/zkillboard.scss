@@ -1,0 +1,88 @@
+.des-kill {
+    display: grid;
+    grid: 33px / 49px 33px 1fr 1fr;
+    border-bottom: 1px solid var(--dotlanLightGreen);
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+}
+
+.des-kill-ship {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+span.des-kill-image {
+    width: 29px;
+    height: 29px;
+    display: inline-block;
+    background-size: contain;
+    border-radius: 4px;
+}
+
+
+.des-kill span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.des-kill-victim, .des-kill-killer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.des-kill-info {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+span.des-kill-system {
+    font-weight: bold;
+}
+
+a.des-kill:link, a.des-kill:visited {
+    color: black;
+}
+
+a.des-kill:hover {
+    color: var(--dotlanDarkGreenFont);
+}
+
+
+.des-killmail-flash {
+    width: calc(var(--dotlanSystemWidth) + 4px);
+    height: calc(var(--dotlanSystemHeight) + 4px);
+    margin-left: -2px;
+    margin-top: -2px;
+    border-radius: 15px;
+    background-color: rgba(250,0,0,0.4);
+    animation: killflash 1800ms linear;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+
+@keyframes killflash {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    25% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3);
+        filter: blur(10px);
+    }
+}

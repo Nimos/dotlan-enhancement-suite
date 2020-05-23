@@ -19,5 +19,9 @@
     "content_scripts": [{
         "matches": ["https://evemaps.dotlan.net/*", "http://evemaps.dotlan.net/*"],
         "js": ["injected.js"]
-    }]
+    }],
+
+    "web_accessible_resources": [
+      "img/*"
+    ]
   }

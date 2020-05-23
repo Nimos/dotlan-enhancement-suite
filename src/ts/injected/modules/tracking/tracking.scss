@@ -1,0 +1,74 @@
+
+#des-module-tracking {
+    #des-character-location, #des-character-name {
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+/* This was a nice idea but idk what to do with it
+div#des-tracking-overlay::before {
+    content: '';
+    display: block;
+    top: calc(var(--tracking-border-width) * -2);
+    left: calc(var(--tracking-border-width) * -2);
+    width: calc(100% + var(--tracking-border-width) * 2);
+    height: calc(100% + var(--tracking-border-width) * 2);
+    position: absolute;
+}
+
+div#des-tracking-overlay::after {
+    background-color: white;
+    content: '';
+    display: block;
+    top: var(--tracking-border-width);
+    left: var(--tracking-border-width);
+    position: absolute;
+    height: calc(100% - (var(--tracking-border-width) * 2));
+    width: calc(100% - (var(--tracking-border-width) * 2));
+    border-radius: 15px;
+}
+
+div#des-tracking-overlay {
+    --tracking-border-width: 4px;
+
+    border-radius: 15px;
+    overflow: hidden;
+    mix-blend-mode: multiply;
+    position: absolute;
+
+    margin-top: calc(-2px + var(--tracking-border-width) * -1);
+    margin-left: calc(-2px + var(--tracking-border-width) * -1);
+    width: calc(54px + var(--tracking-border-width) * 2);
+    height: calc(25px + var(--tracking-border-width) * 2);
+}
+*/
+
+div#des-tracking-overlay {
+    --tracking-border-width: 3px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: absolute;
+    margin-top: calc(var(--tracking-border-width) * -1 - 3px);
+    margin-left: calc(var(--tracking-border-width) * -1 - 3px);
+    width: 56px;
+    height: 27px;
+    border: var(--tracking-border-width) solid black;
+    box-sizing: content-box;
+ 
+    animation: tracking-pulse 2000ms linear infinite;
+ }
+ 
+ @keyframes tracking-pulse {
+     0% {
+         transform: scale(1);
+     }
+ 
+     10% {
+         transform: scale(1.1);
+     }
+ 
+     25% {
+         transform: scale(1);
+     }
+ }

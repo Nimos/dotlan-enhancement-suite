@@ -31,19 +31,23 @@ export class EveAuth {
     
     private constructor() {
         this.getToken().then(tokenData => this.tokenData = tokenData).catch((o) => this.token = false).finally(() => {
-            console.log(this.token);
         });
 
-        chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             if (sender.id != chrome.runtime.id) {
-                sendResponse("unauthorized");
+                sendResponse({ "error": "unauthorized" });
             }
+
             if (request.method == "getToken") {
-                let tokenData = await this.getToken();
-                console.log("TokenData:", tokenData);
-                sendResponse(tokenData);
+                this.getToken().then((tokenData) => {
+                    sendResponse(tokenData);
+                })
+            } else {
+                sendResponse("no");
             }
-        });
+
+            return true;
+        })
         
     }
 
@@ -53,13 +57,14 @@ export class EveAuth {
     async getToken(): Promise<TokenData | null> {
         console.log("Getting ESI token...");
 
-        if (this.tokenData) {
+        if (this.tokenData && this.tokenData.expires >= (new Date().getTime())) {
             return this.tokenData;
         } else {
             try {
                 this.tokenData = await this.getStoredToken();
                 
-                if (this.tokenData.expires < (new Date().getTime())) {
+                if (this.tokenData.expires <= (new Date().getTime())) {
+                    console.log("Using Refresh Token");
                     // We're past expiry date, so refresh token
                     let token = await EveAuth.refreshToken(this.tokenData.refresh_token);
                     this.tokenData.token = token;

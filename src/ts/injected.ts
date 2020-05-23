@@ -1,7 +1,15 @@
 import '../css/injected.scss';
 import { DotlanEnhancementSuite } from './injected/DotlanEnhancementSuite';
+let suite;
 
-let suite = DotlanEnhancementSuite.getInstance();
+
+console.group('Dotlan Enhancement Suite Starting...')
+suite = DotlanEnhancementSuite.getInstance();
+console.groupEnd();
+
+window.addEventListener('DOMContentReady', () => {
+    console.log("LOADED!");
+})
 
 
 document.addEventListener('click', (event) => {

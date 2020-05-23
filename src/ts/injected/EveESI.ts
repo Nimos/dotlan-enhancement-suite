@@ -3,36 +3,40 @@ import { config } from "../config"
 export class EveESI {
     private static characterId: number = 0;
 
-    static async request(endpoint: string, data?: object) {
-        console.groupCollapsed("ESI Request to", endpoint);
-
+    // Sends an authenticated request to the specified ESI Endpoint
+    // or returns the cached result if one exists
+    static async request(endpoint: string, data?: object): Promise<{ result: any, responseData: any }> {
         let url = config.esiHost;
         url += endpoint;
 
+        // Get cached result
         let cached = this.checkCache(url, this.hashData(data));
 
         if (cached) {
-            console.log("Returning from Cache");
-            console.groupEnd();
-            return cached;
+            return { result: cached, responseData: { from: "cache" } };
         }
 
-        if (data) {
-            console.warn("WARNING: You're trying to do a POST request, but that's not yet implemented.")
-        }
-
+        // Send Request
         let token = await this.getToken();
+        let options: RequestInit = { headers: { "Authorization": "Bearer " + token }}
+        
 
-        let response = await fetch(url, { headers: { "Authorization": "Bearer " +  token} });
+        // Add Data if needed
+        if (data) {
+            options.body = JSON.stringify(data);
+            options.method = 'POST';
+        }
+
+        let response = await fetch(url, options);
         let result = await response.json();
 
         if (!result) {
             console.error("No result");
-            console.groupEnd();
-            return false;
+            return { result: false, responseData: response };
         }
 
 
+        // Store in cache
         let expiresHeader = response.headers.get("expires");
 
         let expires;
@@ -44,11 +48,10 @@ export class EveESI {
 
         this.setCache(url, this.hashData(data), { data: result, expires: expires });
  
-        console.log("Result", result);
-        console.groupEnd();
-        return result;
+        return { result: result, responseData: result };
     } 
 
+    // Gets the stored token from the EveAuth module
     private static getToken(): Promise<string> {
         return new Promise((resolve, reject) => {
             chrome.runtime.sendMessage({method: "getToken"}, function(response) {
@@ -57,9 +60,10 @@ export class EveESI {
         })
     }
 
+    // Gets the stored token as well as character name and character Id
     private static getTokenData(): Promise<any> {
         return new Promise((resolve, reject) => {
-            chrome.runtime.sendMessage({method: "getToken"}, function(response) {
+            chrome.runtime.sendMessage({ method: "getToken" }, function (response) {
                 resolve(response);
             });            
         })
@@ -73,6 +77,8 @@ export class EveESI {
     static async getCharacterId(): Promise<string> {
         return (await this.getTokenData()).characterId;
     }
+
+
 
     /*
         Returns an "identifier-friendly" representation of an object
@@ -110,3 +116,7 @@ export class EveESI {
         return false;
     }
 }
+
+
+
+
