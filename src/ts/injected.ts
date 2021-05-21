@@ -3,9 +3,7 @@ import { DotlanEnhancementSuite } from './injected/DotlanEnhancementSuite';
 let suite;
 
 
-console.group('Dotlan Enhancement Suite Starting...')
 suite = DotlanEnhancementSuite.getInstance();
-console.groupEnd();
 
 window.addEventListener('DOMContentReady', () => {
     console.log("LOADED!");

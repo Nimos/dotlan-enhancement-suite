@@ -25,6 +25,37 @@ export abstract class DESModule {
         return 'des-module-' + this.constructor.name.toLowerCase();
     }
 
+    addSystemIcon(systemId: number, iconName: string, iconHTML?: string) {
+        let iconContainer = document.getElementById('des-icon-container-' + systemId);
+        if (!iconContainer) {
+            const system = this.mapDocument.getElementById('sys' + systemId);
+            const rect = system?.getBoundingClientRect();
+
+            if (!rect) {
+                console.warn("Trying to add icon to a system that is not on this map.");
+                return;
+            }
+
+            iconContainer = document.createElement('div');
+            iconContainer.id = 'des-icon-container-' + systemId;
+            iconContainer.classList.add('des-icon-container');
+
+            iconContainer.style.top = rect.top + "px";
+            iconContainer.style.left = rect.left + "px";
+
+            this.elements.overlay.appendChild(iconContainer);
+        }
+
+        const iconEl = document.createElement('i');
+        iconEl.classList.add('des-icon-' + iconName);
+        if (iconHTML) {
+            iconEl.innerHTML = iconHTML;
+        }
+
+        iconContainer.appendChild(iconEl);
+
+    }
+
     getHeaderOuter(): string | false {
         let html = this.getHeaderHtml();
         if (!html) {

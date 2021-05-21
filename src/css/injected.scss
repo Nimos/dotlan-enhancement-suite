@@ -174,3 +174,18 @@ div#outermap {
     position: relative;
 }
 
+
+div.des-icon-container {
+    margin-left: calc(var(--dotlanSystemWidth) - 5px);
+    display: flex;
+    flex-flow: column wrap;
+    height: var(--dotlanSystemHeight);
+    justify-content: space-evenly;
+}
+
+div.des-icon-container > i {
+    width: 12px;
+    height: 12px;
+    pointer-events: all;
+    display: flex;
+}

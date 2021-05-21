@@ -2,6 +2,7 @@ import { DESModule } from "./modules/DESModule";
 import { Tracking as TrackingModule } from "./modules/tracking/tracking";
 import { Entosis as EntosisModule } from "./modules/entosis/entosis";
 import { ZKillboard } from "./modules/zkillboard/zkillboard";
+import { Observatories } from "./modules/observatories/observatories";
 
 export class DotlanEnhancementSuite {
     private static instance: DotlanEnhancementSuite;
@@ -58,5 +59,6 @@ export class DotlanEnhancementSuite {
         const trackingModule = new TrackingModule(this.elements);
         const entosisModule = new EntosisModule(this.elements);      
         const zkillModule = new ZKillboard(this.elements);
+        const observatoryModule = new Observatories(this.elements);
     }
 }
